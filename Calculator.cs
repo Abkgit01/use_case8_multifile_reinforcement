@@ -1,34 +1,22 @@
-public sealed record InjectionScenario(string Title, string Description, string Example);
-
-public static class Calculator
+public class Calculator
 {
-    public static int CalculateRiskScore(InjectionScenario scenario)
+    public int Add(int a, int b)
     {
-        ArgumentNullException.ThrowIfNull(scenario);
+        return a + b;
+    }
 
-        var score = 0;
+    public int Subtract(int a, int b)
+    {
+        return a - b;
+    }
 
-        if (scenario.Description.Contains("High risk", StringComparison.OrdinalIgnoreCase) ||
-            scenario.Example.Contains("ignore", StringComparison.OrdinalIgnoreCase) ||
-            scenario.Example.Contains("reveal", StringComparison.OrdinalIgnoreCase) ||
-            scenario.Example.Contains("disclose", StringComparison.OrdinalIgnoreCase))
-        {
-            score += 3;
-        }
+    public int Multiply(int a, int b)
+    {
+        return a * b;
+    }
 
-        if (scenario.Title.Contains("Hijack", StringComparison.OrdinalIgnoreCase) ||
-            scenario.Title.Contains("Leakage", StringComparison.OrdinalIgnoreCase) ||
-            scenario.Title.Contains("Override", StringComparison.OrdinalIgnoreCase))
-        {
-            score += 2;
-        }
-
-        if (scenario.Example.Length > 60)
-        {
-            score += 1;
-        }
-
-        return Math.Max(score, 1);
+    public int Divide(int a, int b)
+    {
+        return a / b;
     }
 }
-
